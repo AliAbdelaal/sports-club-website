@@ -35,7 +35,7 @@ router.get('/dashboard', async(req,res) =>{
 });
 
 router.get('/',(req,res)=>{
-    res.render(traineeViews+'trainee-index',{layout:false});
+    res.render(adminViews+'panel',{layout:false});
  });
 
 router.use(errorMiddleware);

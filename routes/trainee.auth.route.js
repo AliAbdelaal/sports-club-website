@@ -15,12 +15,7 @@ router.post('/register',register(),registerController);
 
 router.post('/signin',signin(),signinController,createTokenMiddleware);
 
-router.get('/logout',logoutMiddleware,logoutMiddleware);
+router.get('/logout',logoutMiddleware);
 
-router.use(errorMiddleware);
-
-router.use((req)=>{
-
-})
 
 module.exports = router;

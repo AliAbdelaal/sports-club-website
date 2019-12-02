@@ -12,7 +12,12 @@ const register = ()=>{
             return Promise.reject('Email already in use');
             });
         }),
-        body('password').exists().withMessage('password is required').trim().isLength({min:8}).withMessage("Password must be at least 8 charchaters"),
+        body('password1').exists().withMessage('first password is required').trim().isLength({min:8}).withMessage("first Password must be at least 8 charchaters"),
+        body('password2').exists().withMessage('second password is required').trim().isLength({min:8}).withMessage("first Password must be at least 8 charchaters").custom((val,{req})=>{
+           if(val != req.body.password2)
+              throw new Error('the two passwords must match');
+            return true;
+        }),
         body('age').exists().withMessage('age is required').toInt().custom(value =>{
             if(value < 18 || value > 90)
                throw new Error('invalid age');
@@ -24,7 +29,7 @@ const register = ()=>{
 
 const signin = ()=> [
   body('email').exists().withMessage('email is required').isEmail().withMessage('enter a valid email'),
-  body('password').exists().withMessage('password is required')
+  body('password').exists().withMessage('password is required').trim().isLength({min:8}).withMessage("Password must be at least 8 charchaters")
 ]
 
 

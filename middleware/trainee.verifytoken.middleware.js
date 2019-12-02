@@ -11,18 +11,18 @@ module.exports = async (req,res,next)=>{
             if(user.token == req.signedCookies['token'])
                 next();
             else{
-                next({"msg":"not your token!"})
+                next([{"msg":"not your token!"}])
             }    
          }
          else{
-             next({"msg":"invalid credentatials"});
+             next([{"msg":"invalid credentatials"}]);
          }
        }
        catch(e){
-         next({"msg":"cant connect to server at the moment"});
+         next([{"msg":"cant connect to server at the moment"}]);
        }
     }
     else{
-        next({"msg":"please signin once more"});
+        next([{"msg":"please signin once more"}]);
     }
 }

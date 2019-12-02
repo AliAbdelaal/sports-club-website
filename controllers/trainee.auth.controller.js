@@ -2,6 +2,9 @@ const {validationResult} = require('express-validator');
 const {User} = require('../database/models/users');
 const config = require('../config/server');
 const crypto = require('crypto');
+const path = require('path');
+const traineeViews = "trainee"+path.sep;
+
 
 const registerController = async (req,res,next)=>{
     const errors = validationResult(req);
@@ -9,18 +12,20 @@ const registerController = async (req,res,next)=>{
        next(errors.array());
     }
     else {
-        let{name,email,password,age,gender} = req.body;
+        console.log(req.body);
+        let{name,email,password1,age,gender} = req.body;
         try{
-        const record = await User.create({name,email,password,age,gender});
+        const record = await User.create({name,email,password:password1,age,gender,super:0,token:null});
         }
         catch (e){
-           next(e);
+           next([{"msg":"cant connect to server,try again later"}]);
         }
-        res.json({state:'registerd'});
+       res.redirect("/");
     }
  };
 
  const signinController = async (req,res,next)=>{
+    console.log(req.body);
     const errors = validationResult(req);
     if(!errors.isEmpty()){
        next(errors.array());
@@ -31,7 +36,7 @@ const registerController = async (req,res,next)=>{
           if(user){
              let hash  = crypto.createHmac('sha256',config.secret).update(req.body.password).digest('hex');
              if(hash != user.password){
-                next({"msg":"wrong password"});
+                next([{"msg":"wrong password"}]);
              }
              else{ 
                req.user = user;
@@ -39,12 +44,11 @@ const registerController = async (req,res,next)=>{
              }
           }
           else{
-             next({"msg":'wrong email'});
+             next([{"msg":'wrong email'}]);
           }
        }
        catch(e){
-          console.log(e);
-          next({"msg":"cant connect to server,try again later"});
+          next([{"msg":"cant connect to server,try again later"}]);
        }
     }
  }

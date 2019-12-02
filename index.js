@@ -4,6 +4,7 @@ const serverConfig = require('./config/server');
 const cookieParser  = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const hbs = require('express-handlebars');
+const {initDB} = require('./database/connection');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.engine('hbs',hbs({extname:'.html',partialsDir:'partials'}));
 app.set('view engine','hbs');
 app.set('views',path.resolve(__dirname,'./views'));
 
+initDB();
 
 
 app.listen(serverConfig.port,() =>{console.log(`server listening on port ${serverConfig.port}`);

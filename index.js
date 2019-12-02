@@ -6,6 +6,7 @@ const {flash} = require('express-flash-message');
 const session  = require('express-session');
 const hbs = require('express-handlebars');
 const trainee = require('./routes/trainee.route');
+const admin = require('./routes/admin.route');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.set('views',path.resolve(__dirname,'./views'));
 
 
 app.use('/trainee',trainee);
+app.use('/admin',admin);
 
 
 app.use((req,res)=>{

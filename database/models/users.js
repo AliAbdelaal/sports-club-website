@@ -1,4 +1,6 @@
 const {sequelize,Model,DataTypes} = require('../connection');
+const crypto = require('crypto');
+const config = require('../../config/server');
 
 class User extends Model {}
 
@@ -12,7 +14,10 @@ User.init({
     super: DataTypes.INTEGER(1),
   }, { sequelize, modelName: 'users' });
   
+User.beforeCreate((user)=>{
+   user.password = crypto.createHmac('sha256',config.secret).update(user.password).digest('hex');
+});
 
 User.sync();
 
-module.exports = User;
+module.exports = {User};

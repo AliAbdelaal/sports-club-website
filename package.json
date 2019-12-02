@@ -4,7 +4,8 @@
   "description": "A platform that enables both trainers and trainee to connect and share experience.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
+    "express-validator": "^6.3.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.0.1",
     "sequelize": "^5.21.2"

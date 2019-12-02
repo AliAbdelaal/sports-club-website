@@ -13,8 +13,6 @@ app.engine('hbs',hbs({extname:'.html',partialsDir:'partials'}));
 app.set('view engine','hbs');
 app.set('views',path.resolve(__dirname,'./views'));
 
-
-
 app.listen(serverConfig.port,() =>{console.log(`server listening on port ${serverConfig.port}`);
 });
 

@@ -31,7 +31,7 @@ router.use(verifyTokenMiddleware);
 router.get('/dashboard', async(req,res) =>{
     console.log(req.signedCookies['token']);
     console.log('nice sign in');
-    res.render(traineeViews+'dashboard',{layout:false});
+    res.render(adminViews+'panel',{layout:false});
 });
 
 router.get('/',(req,res)=>{

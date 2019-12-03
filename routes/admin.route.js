@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const authRouter = require('./admin.auth.route');
 const errorMiddleware = require('../middleware/trainee.error.middleware');
-const verifyTokenMiddleware = require('../middleware/trainee.verifytoken.middleware');
+const verifyTokenMiddleware = require('../middleware/admin.verifytoken.middleware');
 const path = require('path');
 const adminViews = "admin"+path.sep;
 

@@ -1,9 +1,5 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/server');
-const path = require('path');
-const adminViews = "admin"+path.sep;
-const {User} = require('../database/models/users');
-
 
 module.exports = async(req,res,next)=>{
     let token = jwt.sign({id:req.user.id,email:req.user.email},config.secret);

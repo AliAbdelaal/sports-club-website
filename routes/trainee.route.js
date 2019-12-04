@@ -2,6 +2,7 @@ const router = require('express').Router();
 const authRouter = require('./trainee.auth.route');
 const errorMiddleware = require('../middleware/trainee.error.middleware');
 const verifyTokenMiddleware = require('../middleware/trainee.verifytoken.middleware');
+const traineeController = require("../controllers/trainee.controller");
 const path = require('path');
 const traineeViews = "trainee"+path.sep;
 
@@ -27,12 +28,11 @@ router.get('/signin',async (req,res)=>{
 });
 
 router.use(verifyTokenMiddleware);
-
-router.get('/dashboard', async(req,res) =>{
-    console.log(req.signedCookies['token']);
-    console.log('nice sign in');
-    res.render(traineeViews+'dashboard',{layout:false});
-});
+router.get('/dashboard',traineeController.dashboard);
+router.get('/deletesession/:id',traineeController.deleteSession);
+router.get('/catalog',traineeController.catalog);
+router.get("/sport/:id",traineeController.sport);
+router.get("/addsession/:id",traineeController.addSession);
 
 router.get('/',(req,res)=>{
     res.render(traineeViews+'trainee-index',{layout:false});

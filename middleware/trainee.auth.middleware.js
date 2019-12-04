@@ -1,5 +1,5 @@
 const {body} = require('express-validator');
-const {User} = require('../database/models/users');
+const {User} = require('../database/models');
 
 const register = ()=>{
     return [

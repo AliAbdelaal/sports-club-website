@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/server');
 const path = require('path');
 const adminViews = "admin"+path.sep;
-const {User} = require('../database/models/users');
+const {User} = require('../database/models');
 
 
 module.exports = async(req,res,next)=>{

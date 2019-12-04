@@ -1,4 +1,4 @@
-const {User} = require('../database/models/users');
+const {User} = require('../database/models');
 const jwt = require('jsonwebtoken');
 const config = require('../config/server');
 
@@ -8,8 +8,10 @@ module.exports = async (req,res,next)=>{
          let decode = jwt.verify(req.signedCookies['token'],config.secret,{ignoreExpiration:true});
          const user = await User.findOne({where:{id:decode.id}});
          if(user){
-            if(user.token == req.signedCookies['token'])
+            if(user.token == req.signedCookies['token']){
+                req.id = user.id;
                 next();
+            }
             else{
                 next([{"msg":"not your token!"}])
             }    

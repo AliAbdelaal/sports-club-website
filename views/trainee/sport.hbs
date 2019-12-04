@@ -4,15 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>{{training name}} details</title>
-    <link rel="icon" type="image/png" sizes="512x512" href="../../assets/img/123443.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../../assets/img/123443.png">
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <title>Sport details</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/123443.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/123443.png">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="../../assets/css/styles.min.css">
+    <link rel="stylesheet" href="/css/styles.min.css">
 </head>
 
 <body>
@@ -31,23 +31,54 @@
     </nav>
     <main class="page product-page">
         <section class="clean-block clean-product dark">
+            {{#train}}
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Sport name</h2>
-                    <p>Trainer info</p>
+                    <h2 class="text-info">{{'sport.name'}}</h2>
+                    <p>{{level}}</p>
+                    <p>{{description}}</p>
                 </div>
                 <div class="block-content">
                     <div class="product-info">
                         <div class="row">
-                            <div class="col-md-6"><img class="img-fluid" src="../../assets/img/123443.png"></div>
+                            <div class="col-md-6"><img class="img-fluid" src="/img/{{'sport.name'}}.png"></div>
                             <div class="col-md-6">
-                                <div class="info">
-                                    <h3>Trainng name</h3>
+                                <div class="info d-flex flex-column justify-content-center align-items-center">
+                                    <h3>{{level}}</h3>
                                     <div class="price">
-                                        <h3>$cost</h3>
-                                    </div><button class="btn btn-primary" type="button"><i class="icon-basket"></i>Get this training</button>
+                                        <h5>{{day}}</h5>
+                                    </div>
+                                    <div class="price">
+                                        <h5>{{start_at}} : {{ends_at}}</h5>
+                                    </div><a href="/trainee/addsession/{{id}}"><button class="btn btn-primary" type="button"><i class="icon-basket"></i>Get this training</button></a>
                                     <div class="summary">
-                                        <p>Training short discription</p>
+                                        <p>{{'trainer.name'}}</p>
+                                        <p>{{experience}}</p>
+                                        <p>{{'trainer.description'}}</p>
+                                        <!--Accordion wrapper-->
+                                        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+                                            {{#each previous_jobs}}
+                                                <!-- Accordion card -->
+                                                <div class="card">
+                                                    <!-- Card header -->
+                                                <div class="card-header" role="tab" id="headingOne1">
+                                                    <a data-toggle="collapse" data-parent="#accordionEx" href="#job{{@index}}" aria-expanded="true" aria-controls="collapseOne1">
+                                                    <h5 class="mb-0">
+                                                    {{@key}} <i class="fas fa-angle-down rotate-icon"></i>
+                                                    </h5>
+                                                     </a>
+                                                </div>
+
+                                                    <!-- Card body -->
+                                                 <div id="job{{@index}}" class="collapse" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
+                                                    <div class="card-body">
+                                                        {{this}}
+                                                    </div>
+                                                </div>
+
+                                                </div>
+                                            {{/each}}
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -63,21 +94,21 @@
                                 <div class="tab-pane fade show" role="tabpanel" id="reviews">
                                     <div class="reviews">
                                         <div class="review-item">
-                                            <div class="rating"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star-empty.svg"></div>
+                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-empty.svg"></div>
                                             <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                         </div>
                                     </div>
                                     <div class="reviews">
                                         <div class="review-item">
-                                            <div class="rating"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star-empty.svg"></div>
+                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-empty.svg"></div>
                                             <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                         </div>
                                     </div>
                                     <div class="reviews">
                                         <div class="review-item">
-                                            <div class="rating"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star.svg"><img src="../../assets/img/star-empty.svg"></div>
+                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-empty.svg"></div>
                                             <h4>Incredible product</h4><span class="text-muted"><a href="#">John Smith</a>, 20 Jan 2018</span>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                         </div>
@@ -90,35 +121,22 @@
                         <h3>Related trainings</h3>
                         <div class="items">
                             <div class="row justify-content-center">
+                                {{#../sports}}
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="../../assets/img/123443.png"></a></div>
-                                        <div class="related-name"><a href="#">Training name - cap name</a>
-                                            <h4>$300</h4>
+                                        <div class="image"><a href="/trainee/sport/{{id}}"><img class="img-fluid d-block mx-auto" src="/img/{{'sport.name'}}.png"></a></div>
+                                        <div class="related-name"><p>{{'sport.name'}} - {{'trainer.name'}}</p>
+                                            <h6>{{day}}</h6>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="../../assets/img/123443.png"></a></div>
-                                        <div class="related-name"><a href="#">Training name - cap name</a>
-                                            <h4>$300</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="../../assets/img/123443.png"></a></div>
-                                        <div class="related-name"><a href="#">Training name - cap name</a>
-                                            <h4>$300</h4>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{/../sports}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {{/train}}
         </section>
     </main>
     <footer class="page-footer dark">
@@ -165,7 +183,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="../../assets/js/script.min.js"></script>
+    <script src="/js/script.min.js"></script>
 </body>
 
 </html>

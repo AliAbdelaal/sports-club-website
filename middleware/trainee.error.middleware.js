@@ -5,5 +5,6 @@ module.exports = (err,req,res,next)=>{
       res.redirect("/trainee/register");
     else if(req.path == '/auth/signin')
       res.redirect("/trainee/signin");
+    else
     res.redirect('/');
 }

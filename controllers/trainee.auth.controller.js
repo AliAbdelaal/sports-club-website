@@ -1,5 +1,5 @@
 const {validationResult} = require('express-validator');
-const {User} = require('../database/models/users');
+const {User} = require('../database/models');
 const config = require('../config/server');
 const crypto = require('crypto');
 const path = require('path');
@@ -15,12 +15,13 @@ const registerController = async (req,res,next)=>{
         console.log(req.body);
         let{name,email,password1,age,gender} = req.body;
         try{
-        const record = await User.create({name,email,password:password1,age,gender,super:0,token:null});
+         const record = await User.create({name,email,password:password1,age,gender,super:0,token:null});
+         res.redirect("/trainee/signin");
         }
         catch (e){
+           console.log(e);
            next([{"msg":"cant connect to server,try again later"}]);
         }
-       res.redirect("/");
     }
  };
 

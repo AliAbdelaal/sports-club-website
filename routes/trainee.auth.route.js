@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User} = require('../database/models/users');
+const {User} = require('../database/models');
 const {register ,signin} = require('../middleware/trainee.auth.middleware');
 const {logoutController,signinController,registerController} = require('../controllers/trainee.auth.controller');
 const errorMiddleware = require('../middleware/trainee.error.middleware');

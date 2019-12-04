@@ -1,5 +1,4 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
-
+const {Sequelize, Model, DataTypes } = require('sequelize');
 const config = require('../config/db');
 const sequelize = new Sequelize(config.db, config.username, config.password, {
     host:config.host,

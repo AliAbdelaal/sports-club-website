@@ -1,4 +1,4 @@
 module.exports = {
-    port: 4000 || process.env.port,
+    port:  process.env.port || 4000 ,
     secret:'khaledosama'
 };

@@ -1,8 +1,8 @@
 module.exports = {
- db: process.env.dbName || 'W1V6rEewLS',
- username: process.env.dbUsername ||'W1V6rEewLS',
- password: process.env.dbPassword || 'xzbc2OAMaO',
+ db: process.env.dbName || 'sports_club',
+ username: process.env.dbUsername ||'root',
+ password: process.env.dbPassword || '',
  dialect:'mysql',
- host: process.env.host || 'remotemysql.com',
- port: process.env.dbPort || 3306
+ host: process.env.host || 'localhost',
+ port: process.env.dbPort || 3308
 }

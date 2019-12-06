@@ -46,6 +46,9 @@
                                     <h3>{{level}}</h3>
                                     <div class="price">
                                         <h5>{{day}}</h5>
+                                        {{#../rating}}
+                                          {{{drawRating rating}}}
+                                        {{/../rating}}
                                     </div>
                                     <div class="price">
                                         <h5>{{start_at}} : {{ends_at}}</h5>

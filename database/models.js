@@ -26,8 +26,6 @@ User.beforeCreate((user)=>{
 Trainer.init({
   name: DataTypes.STRING(50),
   email: DataTypes.STRING(50),
-  token: DataTypes.STRING,
-  password: DataTypes.STRING,
   description:DataTypes.STRING
 }, { sequelize, modelName: 'trainers' });
 

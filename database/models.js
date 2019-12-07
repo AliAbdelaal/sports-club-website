@@ -27,9 +27,9 @@ User.beforeCreate((user)=>{
 Trainer.init({
   name: DataTypes.STRING(50),
   email: DataTypes.STRING(50),
-  token: DataTypes.STRING,
-  password: DataTypes.STRING,
-  description:DataTypes.STRING
+  description:DataTypes.STRING,
+  experience:DataTypes.ENUM("less than one year","1 years","2 years" ,"3 years","4 years","5 years","more than 5 years"), 
+  previous_jobs:DataTypes.JSON
 }, { sequelize, modelName: 'trainers' });
 
 Sport.init({
@@ -37,14 +37,13 @@ Sport.init({
 }, { sequelize, modelName: 'sports' });
 
 Train.init({
+  name: DataTypes.STRING(50),
   day: DataTypes.ENUM('Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'),
-  experience:DataTypes.ENUM("less than one year","1 years","2 years" ,"3 years","4 years","5 years","more than 5 years"), 
-  previous_jobs:DataTypes.JSON,
   description:DataTypes.STRING,
-  level:DataTypes.ENUM('beginner','intermeidate','advanced'),
+  level:DataTypes.ENUM('Beginner','Intermediate','Advanced'),
+  price:DataTypes.FLOAT,
   start_at:DataTypes.TIME,
   ends_at:DataTypes.TIME,
-  
 }, { sequelize, modelName: 'trains' });
 
 Train.belongsTo(Sport,{onDelete:"CASCADE"});
@@ -63,7 +62,7 @@ Session.belongsTo(User,{onDelete:"CASCADE"});
 Session.belongsTo(Trainer,{onDelete:"CASCADE"});
 Session.belongsTo(Sport,{onDelete:"CASCADE"});
 Trainer.hasMany(Session);
-Sport.hasMany(Session)
+Sport.hasMany(Session);
 User.hasMany(Session);
 
 TrainerReviews.init({

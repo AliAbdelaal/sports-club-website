@@ -4,15 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Trainer registeration</title>
-    <link rel="icon" type="image/png" sizes="512x512" href="../../assets/img/123443.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="../../assets/img/123443.png">
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <title>Trainer creation</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/123443.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/123443.png">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="../../assets/css/styles.min.css">
+    <link rel="stylesheet" href="/css/styles.min.css">
 </head>
 
 <body>
@@ -33,9 +33,27 @@
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Register as a trainer</h2>
+                    <h2 class="text-info">Create a Trainer</h2>
                     <p>Trainers on our platform enjoy working with passionate trainees on free schedule.</p>
                 </div>
+<<<<<<< HEAD:views/trainer/registration.hbs
+                <form method="POST" enctype="application/x-www-form-urlencoded" action="/admin/create/trainer">
+                    <div class="form-group"><label for="name">Name</label><input class="form-control item" type="text" id="name" name="name"></div>
+                    <div class="form-group"><label for="description">Description</label><textarea class="form-control item"id="desciption" name="description"></textarea></div>
+                    <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email" name="email"></div>
+                    <div class="form-group"><label>Gender</label>
+                        <select class="form-control" name="experience">
+                            <option value="less than one year">less than one year</option>
+                            <option value="1 years">1 years</option>
+                            <option value="2 years">2 years</option>
+                            <option value="3 years">3 years</option>
+                            <option value="4 years">4 years</option>
+                            <option value="5 years">5 years</option>
+                            <option value="more than 5 years">more than 5 years</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">Create</button>
+=======
                 <form>
                     <div class="form-group"><label for="name">Name</label><input class="form-control item" type="text" id="name"></div>
                     <div class="form-group"><label for="password">Password</label><input class="form-control item" type="password" id="password"></div>
@@ -46,6 +64,7 @@
                             <option value="1">Female</option>
                         </select></div>
                     <div class="form-group"><label>Birthday</label><input class="form-control" type="date"></div><button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+>>>>>>> 79774edd2c6ada66bf41fd6f6c4eb0dbc33e5a0f:views/trainer/registration.html
                 </form>
             </div>
         </section>
@@ -59,7 +78,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="../../assets/js/script.min.js"></script>
+    <script src="/js/script.min.js"></script>
 </body>
 
 </html>

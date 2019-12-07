@@ -40,6 +40,7 @@
                     <div class="container">
                         <div class="block-heading">
                             <h2 class="text-info">Best going training</h2>
+                            <a href="/admin/add/training" class="btn btn-info">Add another</a>
                             <p>Trainings total profit <strong>$$$</strong></p>
                             <div class="table-responsive">
                                 <table class="table">
@@ -53,20 +54,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Training name</td>
-                                            <td>Football</td>
-                                            <td>Trainer name</td>
-                                            <td>$$$</td>
-                                            <td>25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Training name</td>
-                                            <td>Swimming</td>
-                                            <td>Trainer name</td>
-                                            <td>$$$</td>
-                                            <td>15</td>
-                                        </tr>
+                                        {{#each trains}}
+                                            <tr>
+                                                <td>{{name}}</td>
+                                                <td>{{sport.name}}</td>
+                                                <td>{{trainer.name}}</td>
+                                                <td>{{price}}</td>
+                                                <td></td>
+                                            </tr>
+                                        {{/each}}
                                     </tbody>
                                 </table>
                             </div>
@@ -76,6 +72,7 @@
                         <div class="container">
                             <div class="block-heading">
                                 <h2 class="text-info">Best going trainer</h2>
+                                <a href="/admin/add/trainer" class="btn btn-info">Add another</a>
                                 <p>Trainers total profit <strong>$$$</strong></p>
                                 <div class="table-responsive">
                                     <table class="table">
@@ -88,12 +85,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {{#each trainers}}
                                             <tr>
                                                 <td>Cell 1</td>
                                                 <td>Cell 2</td>
                                                 <td>Cell 3</td>
                                                 <td>Cell 4</td>
                                             </tr>
+                                            {{/each}}
                                             <tr>
                                                 <td>Cell 3</td>
                                                 <td>Cell 4</td>

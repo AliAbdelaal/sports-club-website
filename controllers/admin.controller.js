@@ -6,7 +6,20 @@ const adminViews = "admin"+path.sep;
 const dashboard = async(req,res) =>{
     console.log(req.signedCookies['token']);
     console.log('nice sign in');
-    res.render(adminViews+'panel',{layout:false});
+    const trains = await Train.findAll(
+        {attributes: { exclude: ['trainerId','sportId','createdAt','updatedAt'] },include:[
+            {model:Trainer,attributes:['name']},
+            {model:Sport,attributes:["name"]}
+        ]}
+    );
+    const trainers = await Trainer.findAll(
+        {attributes: { exclude: ['trainerId','sportId','createdAt','updatedAt'] },include:[
+            {model:Trainer,attributes:['name']},
+            {model:Sport,attributes:["name"]}
+        ]}
+    );
+    // console.log(JSON.stringify(trains));
+    res.render(adminViews+'panel',{trains:trains,layout:false});
 };
 
 const createTrainer = async(req,res) =>{

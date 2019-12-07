@@ -43,7 +43,7 @@
                                     <div class="filter-item">
                                         <h3>Sports</h3>
                                         {{#sports}}
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="{{name}}" value="{{name}}"><label class="form-check-label" for="formCheck-1">{{name}}</label></div>
+                                        <div class="form-check"><input onchange="toggleDisplay(this)" class="form-check-input" type="checkbox" id="{{name}}" value="{{name}}"><label class="form-check-label" for="formCheck-1">{{name}}</label></div>
                                         {{/sports}}
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                             <div class="products">
                                 <div class="row no-gutters">
                                      {{#trains}}
-                                    <div class="col-12 col-md-6 col-lg-4">   
+                                    <div class="col-12 col-md-6 col-lg-4 sport sport-{{'sport.name'}}">   
                                         <div class="clean-product-item">
                                             <div class="image"><a href="/trainee/sport/{{id}}"><img class="img-fluid d-block mx-auto" src="/img/{{'sport.name'}}.png"></a></div>
                                             <div class="product-name text-center"><a href="#">{{'sport.name'}}</a></div>
@@ -139,6 +139,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="/js/script.min.js"></script>
+    <script src="/js/helper.js"></script>
 </body>
 
 </html>

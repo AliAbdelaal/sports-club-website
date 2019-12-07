@@ -34,9 +34,15 @@ router.get('/dashboard', adminController.dashboard);
 
 router.get('/add/trainer', (req,res)=>{
     res.render(trainerViews+'registration',{layout:false});
- });
+});
 
 router.post('/create/trainer', adminController.createTrainer);
+
+router.get('/add/training', (req,res)=>{
+    res.render(trainerViews+'add-training',{layout:false});
+});
+
+router.post('/create/training', adminController.createTraining);
 
 router.get('/',(req,res)=>{
     res.render(adminViews+'panel',{layout:false});

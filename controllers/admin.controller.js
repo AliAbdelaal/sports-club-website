@@ -12,9 +12,9 @@ const dashboard = async(req,res) =>{
 const createTrainer = async(req,res) =>{
 
     console.log("creating trainer")
-    let{name,email,description} = req.body;
+    let{name,email,description,experience} = req.body;
     try{
-        const record = await Trainer.create({name,email,description});
+        const record = await Trainer.create({name,email,description,experience});
     }
     catch (e){
         next([{"msg":"cant connect to server,try again later"}]);
@@ -22,5 +22,19 @@ const createTrainer = async(req,res) =>{
     res.render(adminViews+'panel',{layout:false});
 };
 
-module.exports = {dashboard,createTrainer}
+const createTraining = async(req,res) =>{
+
+    console.log("creating training")
+    let{name,sportId,trainerId,level,day,start_at,ends_at,description,price} = req.body;
+    try{
+        const record = await Train.create({name,sportId,trainerId,level,day,start_at,ends_at,description,price});
+    }
+    catch (e){
+        console.log(e);
+        next([{"msg":"cant connect to server,try again later"}]);
+    }
+    res.render(adminViews+'panel',{layout:false});
+};
+
+module.exports = {dashboard,createTrainer,createTraining}
 

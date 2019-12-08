@@ -1,5 +1,17 @@
 var set = new Set();
 var elements = document.getElementsByClassName(`sport`);
+var inputstars = document.getElementsByClassName('input-star');
+var rating = document.getElementById('rating');
+
+function displayStars(e){
+   for(let i=0; i<=e; i++){
+      inputstars[i].style.color='orange';
+   } 
+   for(let i=e+1; i<=4; i++){
+      inputstars[i].style.color='black';
+   }
+   rating.value = e+1;
+}
 
 /**
  * @param {Set} set

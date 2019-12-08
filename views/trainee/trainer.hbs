@@ -52,6 +52,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <form class="form" enctype="application/x-www-form-urlencoded" method="POST" action="/trainee/addreview">
+                                    <div class='form-group'>
+                                    {{{drawInputStars 0}}}
+                                   <input name="rating" id='rating' type="number" hidden required min="1" max="5" >
+                                   <input name='trainer' value="{{trainer.id}}" hidden>
+                                   </div>
+                                    <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control" minlength="15" id="description" name="description" rows="5" required></textarea>
+                                    </div>    
+                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="product-info">
@@ -147,6 +161,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="/js/script.min.js"></script>
+    <script src='/js/helper.js'></script>
 </body>
 
 </html>

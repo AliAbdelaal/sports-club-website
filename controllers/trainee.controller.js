@@ -89,6 +89,7 @@ const trainerView = async (req,res,next) =>{
         const trainer = await Trainer.findOne({raw:true,where:{
            id :req.params.id
         },attributes:[
+            'id',
             'name',
             'description',
             'experience',
@@ -113,6 +114,13 @@ const trainerView = async (req,res,next) =>{
                    str+= "<span class = 'fa fa-star' style ='color:black'></span>";
                 str+='</div>';
                 return str;
+            },
+            drawInputStars:function(){
+                let str ='<div>';
+                for(let i = 0; i <5;i++)
+                   str+= `<span id=${i} onclick='displayStars(${i})' class = 'fa fa-star input-star' style ='color:black'></span>`;
+                str+='</div>';
+                return str;
             }
         }});
         }
@@ -125,11 +133,36 @@ const trainerView = async (req,res,next) =>{
      res.redirect('/trainee/dashboard');
 }
 
+const addReview = async(req,res,next)=>{
+    try{    
+    const review = await TrainerReviews.findOne({where:{
+        trainerId:req.body.trainer,
+        userId:req.id
+    }});
+     if(review)
+     await review.update(req.body);
+     else{
+         const body = {
+             userId:req.id,
+             trainerId:req.body.trainer,
+             rating:req.body.rating,
+             description:req.body.description
+         }
+         await TrainerReviews.create(body);
+     }
+     res.redirect(`/trainee/trainer/${req.body.trainer}`);
+    }
+    catch(e){
+        console.log(e);
+        res.redirect("/trainee/dashboard");
+    }
+}
 module.exports = {
     deleteSession,
     dashboard,
     catalog,
     sport,
     addSession,
-    trainerView
+    trainerView,
+    addReview
 };

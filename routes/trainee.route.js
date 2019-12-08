@@ -28,6 +28,7 @@ router.get('/signin',async (req,res)=>{
 });
 
 router.use(verifyTokenMiddleware);
+router.post("/addreview",traineeController.addReview);
 router.get('/dashboard',traineeController.dashboard);
 router.get('/deletesession/:id',traineeController.deleteSession);
 router.get('/catalog',traineeController.catalog);

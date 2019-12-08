@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Product - Brand</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/123443.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/123443.png">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="/css/styles.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="#">E-Sport</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/trainee/dashboard">Home</a></li>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-warning" href="/trainee/catalog">Catalog</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-primary" href="/trainee/auth/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page product-page">
+        <section class="clean-block clean-product dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Trainer profile</h2>
+                    <p>Trainer info</p>
+                </div>
+                <div class="block-content">
+                    <div class="product-info">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info">
+                                    {{#if trainer}}
+                                    <h3>{{trainer.name}}</h3>
+                                    <div class="rating">{{#if rating}}{{{drawRating rating}}}{{/if}}</div>
+                                    <div class="price">
+                                        <h3>{total profit}</h3>
+                                    </div><button class="btn btn-primary" type="button"><i class="icon-basket"></i>See trainigs</button>
+                                    <div class="summary">
+                                        <p>Experience : {{trainer.experience}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <ul class="nav nav-tabs" id="myTab">
+                                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" id="description-tab" href="#description">Description</a></li>
+                                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" id="reviews-tab" href="#reviews">Reviews</a></li>
+                                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" id="jobs-tab" href="#jobs">Jobs</a></li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show description" role="tabpanel" id="description">
+                                    <p>{{trainer.description}}</p>
+                                </div>
+                                <div class="tab-pane fade show description" role="tabpanel" id="jobs">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="list-group" id="list-tab" role="tablist">
+                                                {{#each trainer.previous_jobs}}
+                                            <a class="list-group-item list-group-item-action" id="list-{{@key}}" data-toggle="list" href="#{{@key}}" role="tab" aria-controls="home">{{@key}}</a>
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="tab-content" id="nav-tabContent">
+                                            {{#each trainer.previous_jobs}}
+                                            <div class="tab-pane fade " id="{{@key}}" role="tabpanel" aria-labelledby="list-home-list">{{this}}</div>
+                                            {{/each}}
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+                                <div class="tab-pane active fade show" role="tabpanel" id="reviews">
+                                    {{#if reviews}}
+                                    {{#reviews}}
+                                    <div class="reviews">
+                                        <div class="review-item">
+                                           {{{drawRating rating}}}
+                                            <h4>{{name}}</h4><span class="text-muted">{{'users.trainerreviews.createdAt'}}</span>
+                                            <p>{{description}}</p>
+                                        </div>
+                                    </div>
+                                    {{/reviews}}
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+                    <div class="clean-related-items">
+                        <h3>People also viewed</h3>
+                        <div class="items">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="clean-related-item">
+                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="/img/avatars/avatar1.jpg"></a></div>
+                                        <div class="related-name"><a href="#">Trainer name</a>
+                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-half-empty.svg"><img src="/img/star-empty.svg"></div>
+                                            <h4>{profit}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="clean-related-item">
+                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="/img/avatars/avatar2.jpg"></a></div>
+                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
+                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-half-empty.svg"><img src="/img/star-empty.svg"></div>
+                                            <h4>$300</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="clean-related-item">
+                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="/img/avatars/avatar3.jpg"></a></div>
+                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
+                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-half-empty.svg"><img src="/img/star-empty.svg"></div>
+                                            <h4>$300</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark">
+        <div class="footer-copyright">
+            <p>© 2020 E-Sports platform</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="/js/script.min.js"></script>
+</body>
+
+</html>

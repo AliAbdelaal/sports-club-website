@@ -43,7 +43,7 @@
                             <div class="col-md-6"><img class="img-fluid" src="/img/{{'sport.name'}}.png"></div>
                             <div class="col-md-6">
                                 <div class="info d-flex flex-column justify-content-center align-items-center">
-                                    <h3>{{level}}</h3>
+                                    <h3>{{price}}$</h3>
                                     <div class="price">
                                         <h5>{{day}}</h5>
                                         {{#../rating}}
@@ -55,11 +55,11 @@
                                     </div><a href="/trainee/addsession/{{id}}"><button class="btn btn-primary" type="button"><i class="icon-basket"></i>Get this training</button></a>
                                     <div class="summary">
                                         <p>{{'trainer.name'}}</p>
-                                        <p>{{experience}}</p>
+                                        <p>{{'trainer.experience'}}</p>
                                         <p>{{'trainer.description'}}</p>
                                         <!--Accordion wrapper-->
                                         <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                            {{#each previous_jobs}}
+                                            {{#each ../jobs}}
                                                 <!-- Accordion card -->
                                                 <div class="card">
                                                     <!-- Card header -->

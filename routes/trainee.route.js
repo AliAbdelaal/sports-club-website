@@ -33,10 +33,13 @@ router.get('/deletesession/:id',traineeController.deleteSession);
 router.get('/catalog',traineeController.catalog);
 router.get("/sport/:id",traineeController.sport);
 router.get("/addsession/:id",traineeController.addSession);
+router.get("/trainer/:id",traineeController.trainerView);
 
 router.get('/',(req,res)=>{
     res.render(traineeViews+'trainee-index',{layout:false});
  });
+
+
 
 router.use(errorMiddleware);
 

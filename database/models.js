@@ -28,7 +28,7 @@ Trainer.init({
   name: DataTypes.STRING(50),
   email: DataTypes.STRING(50),
   description:DataTypes.STRING,
-  experience:DataTypes.ENUM("less than one year","1 years","2 years" ,"3 years","4 years","5 years","more than 5 years"), 
+  experience:DataTypes.ENUM("less than one year","1 year","2 years" ,"3 years","4 years","5 years","more than 5 years"), 
   previous_jobs:DataTypes.JSON
 }, { sequelize, modelName: 'trainers' });
 
@@ -85,33 +85,12 @@ rating:{
     }
   }
 },
-userId:{
- type:DataTypes.INTEGER,
- references:{
-  model:User,
-  key:'id', 
- },
- primaryKey:true
-},
-sportId:{
-  type:DataTypes.INTEGER,
-  references:{
-   model:Sport,
-   key:'id', 
-  },
-  primaryKey:true
-},
-trainerId:{
-  type:DataTypes.INTEGER,
-  references:{
-   model:Trainer,
-   key:'id', 
-  },
-  primaryKey:true
-}
 },{sequelize,modelName:"trainerreviews"});
 
-sequelize.sync();
+User.belongsToMany(Trainer,{through:TrainerReviews});
+Trainer.belongsToMany(User,{through:TrainerReviews});
+
+sequelize.sync({});
 
 
 module.exports = {User,Sport,Train,Trainer,Session,TrainerReviews,sequelize};

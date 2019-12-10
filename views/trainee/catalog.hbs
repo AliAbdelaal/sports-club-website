@@ -17,11 +17,11 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">E-Sport</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="/">E-Sport</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/trainee">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/trainee/dashboard">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link text-primary" href="/trainee/dashboard">dashboard</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link text-primary" href="/trainee/auth/logout">logout</a></li>
                 </ul>
@@ -67,7 +67,7 @@
                                      {{#trains}}
                                     <div class="col-12 col-md-6 col-lg-4 sport sport-{{'sport.name'}}">   
                                         <div class="clean-product-item">
-                                            <div class="image"><a href="/trainee/sport/{{id}}"><img class="img-fluid d-block mx-auto" src="/img/{{'sport.name'}}.png"></a></div>
+                                            <div class="image"><a href="/trainee/sport/{{id}}"><img class="img-fluid d-block mx-auto" src="/img/{{'sport.name'}}.png" alt="/img/general.png"></a></div>
                                             <div class="product-name text-center"><a href="#">{{'sport.name'}}</a></div>
                                             <div class="product-name text-center"><a href="/trainee/trainer/{{'trainer.id'}}">Captain : {{'trainer.name'}}</a></div>
                                             <div class="about ">

@@ -16,6 +16,7 @@ const registerController = async (req,res,next)=>{
         let{name,email,password1,age,gender} = req.body;
         try{
          const record = await User.create({name,email,password:password1,age,gender,super:0,token:null});
+         req.flash("success","Registered successfully");
          res.redirect("/trainee/signin");
         }
         catch (e){
@@ -56,7 +57,9 @@ const registerController = async (req,res,next)=>{
 
  const logoutController = async (req,res,next)=>
  {
-   res.json({"state":'logged out'});
+    console.log('logged out succesfully');
+    res.cookie('token',null,{expires:new Date(Date.now()),signed:true});
+    res.redirect("/trainee");
  }
  module.exports={
      registerController,

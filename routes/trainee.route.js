@@ -20,11 +20,16 @@ router.get('/register',async (req,res) =>{
 
 router.get('/signin',async (req,res)=>{
     let errors = await req.consumeFlash('errors');
+    let success = await req.consumeFlash('success');
+    if(success){
+        success = success[0];
+    }
     if(errors){
         errors = errors[0];
     }
     console.log(errors);
-    res.render(traineeViews+'login',{layout:false,errors:errors?errors:null});
+    console.log(success);
+    res.render(traineeViews+'login',{layout:false,success,errors:errors?errors:null});
 });
 
 router.use(verifyTokenMiddleware);

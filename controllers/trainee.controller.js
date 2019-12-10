@@ -1,5 +1,5 @@
-const {Session,Sport,Trainer,Train,TrainerReviews,User} = require('../database/models');
-const {Op,fn,col} = require('sequelize');
+const {Session,Sport,Trainer,Train,TrainerReviews,User,sequelize} = require('../database/models');
+const {Op,fn,col,QueryTypes} = require('sequelize');
 const path = require('path');
 const traineeViews = "trainee"+path.sep;
 
@@ -95,17 +95,26 @@ const trainerView = async (req,res,next) =>{
             'experience',
             'previous_jobs'
         ]});
-        const reviews = await Trainer.findAll({attributes:['users.name','users.trainerreviews.rating','users.trainerreviews.description'],raw:true,where:{id:req.params.id},include:[{model:User,attributes:['name'],through:{
+        const reviews = await Trainer.findAll({attributes:['users.name','users.trainerreviews.rating','users.trainerreviews.description','id'],raw:true,where:{id:req.params.id},include:[{model:User,attributes:['name','id'],through:{
             attributes:['description','rating'],
             where:{
                 trainerId:req.params.id
             }
         }}]});
+        const currUserReview = reviews.filter((curr) => curr['users.id'] == req.id && curr.id == req.params.id);
+        const similarTrainers = await sequelize.query(`select t.id ,t.name,t.description ,AVG(rev.rating) as rating 
+        from trainers as t left join trainerreviews as rev on t.id = rev.trainerId 
+        where t.id != ${req.params.id}
+        group by t.id , t.name 
+        order by rating DESC 
+        Limit 3`,{type:QueryTypes.SELECT,raw:true});
+        console.log(similarTrainers);
+        // console.log(reviews);
+        // console.log(currUserReview);
         var rating = null;
         if(reviews.length)
         rating = Math.floor(reviews.reduce((prev,curr)=> prev+=curr.rating,0)/reviews.length);
-        console.log(reviews);
-        res.render( traineeViews+'trainer',{layout:false,trainer,rating,reviews,helpers:{
+        res.render( traineeViews+'trainer',{layout:false,trainer,rating,reviews,currUserReview,similarTrainers,helpers:{
             drawRating:function(val){
                 let str ='<div>';
                 for(let i =  0; i<val; i++)
@@ -115,9 +124,11 @@ const trainerView = async (req,res,next) =>{
                 str+='</div>';
                 return str;
             },
-            drawInputStars:function(){
+            drawInputStars:function(val){
                 let str ='<div>';
-                for(let i = 0; i <5;i++)
+                for(let i = 0; i < val;i++)
+                   str+= `<span id=${i} onclick='displayStars(${i})' class = 'fa fa-star input-star' style ='color:orange'></span>`;
+                for(let i = val ; i <5;i++)
                    str+= `<span id=${i} onclick='displayStars(${i})' class = 'fa fa-star input-star' style ='color:black'></span>`;
                 str+='</div>';
                 return str;

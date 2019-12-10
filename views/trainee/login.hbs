@@ -17,13 +17,12 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">E-Sport</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+        <div class="container"><a class="navbar-brand logo" href="/">E-Sport</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/trainee">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/trainee/dashboard">Home</a></li>
                     <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-warning" href="/trainee">not a trainer?</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link text-primary" href="/trainee/register">Register</a></li>
                 </ul>
             </div>
@@ -40,13 +39,21 @@
                     <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email" name="email"></div>
                     <div class="form-group"><label for="password">Password</label><input class="form-control" type="password" id="password" name="password"></div>
                     <div class="form-group">
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox" name="remember"><label class="form-check-label" for="checkbox">Remember me</label></div>
                         {{#if errors}}
                         <div class="errors bg-danger text-light" style="margin:7px 0px; border-radius:7px; padding:7px 0px;">
                             <ul>{{#errors}}
-                                <li>{{msg}}</li> {{/errors}}</ul>
-                        </div>{{/if}}
-                    </div><button class="btn btn-primary btn-block" type="submit">Log In</button>
+                            <li>{{msg}}</li> {{/errors}}</ul>
+                        </div>
+                        {{/if}}
+                        {{#if success}}
+                          <div class="errors bg-success text-light" style="margin:7px 0px; border-radius:7px; padding:7px 0px;">
+                            <ul>
+                            <li>{{success}}</li>
+                            </ul>
+                         </div>
+                        {{/if}}
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit">Log In</button>
                 </form>
             </div>
         </section>

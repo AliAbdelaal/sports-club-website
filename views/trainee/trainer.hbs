@@ -17,7 +17,7 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">E-Sport</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="/">E-Sport</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
@@ -45,7 +45,7 @@
                                     <h3>{{trainer.name}}</h3>
                                     <div class="rating">{{#if rating}}{{{drawRating rating}}}{{/if}}</div>
                                     <div class="price">
-                                        <h3>{total profit}</h3>
+                                        {{!-- <h3>{total profit}</h3> --}}
                                     </div><button class="btn btn-primary" type="button"><i class="icon-basket"></i>See trainigs</button>
                                     <div class="summary">
                                         <p>Experience : {{trainer.experience}}</p>
@@ -55,13 +55,19 @@
                             <div class="col-md-6">
                                 <form class="form" enctype="application/x-www-form-urlencoded" method="POST" action="/trainee/addreview">
                                     <div class='form-group'>
+                                    {{#if currUserReview}}
+                                     {{#currUserReview}}
+                                     {{{drawInputStars rating}}}
+                                     {{/currUserReview}}
+                                    {{else}}
                                     {{{drawInputStars 0}}}
+                                    {{/if}}
                                    <input name="rating" id='rating' type="number" hidden required min="1" max="5" >
                                    <input name='trainer' value="{{trainer.id}}" hidden>
                                    </div>
                                     <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" minlength="15" id="description" name="description" rows="5" required></textarea>
+                                    <textarea class="form-control" minlength="15" id="description" name="description" rows="5" required> {{#if currUserReview}}{{#currUserReview}} {{description}} {{/currUserReview}}{{/if}}</textarea>
                                     </div>    
                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
@@ -71,12 +77,12 @@
                     <div class="product-info">
                         <div>
                             <ul class="nav nav-tabs" id="myTab">
-                                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" id="description-tab" href="#description">Description</a></li>
+                                <li class="nav-item"><a class="nav-link " role="tab" data-toggle="tab" id="description-tab" href="#desc">Description</a></li>
                                 <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" id="reviews-tab" href="#reviews">Reviews</a></li>
                                 <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" id="jobs-tab" href="#jobs">Jobs</a></li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show description" role="tabpanel" id="description">
+                                <div class="tab-pane fade show description" role="tabpanel" id="desc">
                                     <p>{{trainer.description}}</p>
                                 </div>
                                 <div class="tab-pane fade show description" role="tabpanel" id="jobs">
@@ -115,36 +121,20 @@
                     </div>
                     {{/if}}
                     <div class="clean-related-items">
-                        <h3>People also viewed</h3>
+                        <h3>Top Trainers</h3>
                         <div class="items">
                             <div class="row justify-content-center">
-                                <div class="col-sm-6 col-lg-4">
+                                {{#similarTrainers}}
+                                <div class="col-sm-6 col-lg-4" style="border:0px solid white;">
                                     <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="/img/avatars/avatar1.jpg"></a></div>
-                                        <div class="related-name"><a href="#">Trainer name</a>
-                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-half-empty.svg"><img src="/img/star-empty.svg"></div>
-                                            <h4>{profit}</h4>
+                                        <div class="image"><a href="/trainee/trainer/{{id}}"><img class="img-fluid d-block mx-auto" src="/img/trainer.png"></a></div>
+                                        <div class="related-name">{{description}}
+                                            {{{drawRating rating}}}
+                                            <h4><a href="/trainee/trainer/{{id}}">{{name}}</a></h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="/img/avatars/avatar2.jpg"></a></div>
-                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
-                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-half-empty.svg"><img src="/img/star-empty.svg"></div>
-                                            <h4>$300</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="/img/avatars/avatar3.jpg"></a></div>
-                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
-                                            <div class="rating"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star.svg"><img src="/img/star-half-empty.svg"><img src="/img/star-empty.svg"></div>
-                                            <h4>$300</h4>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{/similarTrainers}}
                             </div>
                         </div>
                     </div>

@@ -19,6 +19,21 @@ router.get('/register',async (req,res) =>{
 });
 
 router.get('/signin',async (req,res)=>{
+    if(req.signedCookies['token']){
+        try{
+          let decode = jwt.verify(req.signedCookies['token'],config.secret,{ignoreExpiration:true});
+          const user = await User.findOne({where:{id:decode.id}});
+          if(user){
+             if(user.token == req.signedCookies['token']){
+                 req.id = user.id;
+                 res.redirect('/trainee/dashboard');
+             }
+          }
+        }
+        catch(e){
+            console.log(e);
+        }
+     }
     let errors = await req.consumeFlash('errors');
     let success = await req.consumeFlash('success');
     if(success){

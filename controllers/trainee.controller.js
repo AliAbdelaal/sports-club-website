@@ -6,7 +6,7 @@ const traineeViews = "trainee"+path.sep;
 const dashboard = async (req,res,next)=>{
       try{
       console.log("id",req.id);
-      const user = User.findOne({raw:true,where:{id:req.id},attributes:['name']});
+      const user = await User.findOne({raw:true,where:{id:req.id},attributes:['name']});
       const userSessions = await Session.findAll({include:[{model:Sport,attributes:['name'],as:'sport'},{model:Trainer,as:'trainer',attributes:['name']}],where:{userId:req.id},raw:true});
       console.log(userSessions);
       res.render(traineeViews+'dashboard',{sessions:userSessions,user,layout:false});

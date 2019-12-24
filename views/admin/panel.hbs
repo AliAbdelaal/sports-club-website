@@ -49,18 +49,18 @@
                                             <th>Training name</th>
                                             <th>Sport</th>
                                             <th>Trainer</th>
-                                            <th>Profit</th>
+                                            <th>level</th>
                                             <th>Subscribers</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{#each trains}}
+                                        {{#each sessions}}
                                             <tr>
                                                 <td>{{name}}</td>
-                                                <td>{{sport.name}}</td>
-                                                <td>{{trainer.name}}</td>
-                                                <td>{{price}}</td>
-                                                <td></td>
+                                                <td>{{sport}}</td>
+                                                <td>{{trainer}}</td>
+                                                <td>{{level}}</td>
+                                                <td>{{users}}</td>
                                             </tr>
                                         {{/each}}
                                     </tbody>
@@ -81,24 +81,18 @@
                                                 <th>Trainer name</th>
                                                 <th>Total trainings</th>
                                                 <th>total subscribers</th>
-                                                <th>Total profit</th>
+                                                <th>Total Rating</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {{#each trainers}}
                                             <tr>
-                                                <td>Cell 1</td>
-                                                <td>Cell 2</td>
-                                                <td>Cell 3</td>
-                                                <td>Cell 4</td>
+                                                <td>{{name}}</td>
+                                                <td>{{sessions}}</td>
+                                                <td>{{subs}}</td>
+                                                <td>{{{drawRating rating}}}</td>
                                             </tr>
                                             {{/each}}
-                                            <tr>
-                                                <td>Cell 3</td>
-                                                <td>Cell 4</td>
-                                                <td>Cell 3</td>
-                                                <td>Cell 4</td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

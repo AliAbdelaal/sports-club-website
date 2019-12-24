@@ -34,8 +34,9 @@ const registerController = async (req,res,next)=>{
        try{
           const user = await User.findOne({where:{email:req.body.email,super:1}});
           if(user){
-             let hash  = crypto.createHmac('sha256',config.secret).update(req.body.password).digest('hex');
-             if(hash != user.password){
+            //  let hash  = crypto.createHmac('sha256',config.secret).update(req.body.password).digest('hex'); 
+            hash = req.body.password;
+            if(hash != user.password){
                 next([{"msg":"wrong password"}]);
              }
              else{ 
@@ -55,7 +56,10 @@ const registerController = async (req,res,next)=>{
 
  const logoutController = async (req,res,next)=>
  {
-   res.json({"state":'logged out'});
+   
+   console.log('logged out succesfully');
+   res.cookie('token',null,{expires:new Date(Date.now())});
+   res.redirect("/admin/signin");
  }
  module.exports={
      registerController,

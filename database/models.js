@@ -90,7 +90,7 @@ rating:{
 User.belongsToMany(Trainer,{through:TrainerReviews});
 Trainer.belongsToMany(User,{through:TrainerReviews});
 
-sequelize.sync({force:true});
+sequelize.sync({});
 
 
 module.exports = {User,Sport,Train,Trainer,Session,TrainerReviews,sequelize};
